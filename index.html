@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="description" content="Official page of Kaia Mori — Tokyo-based virtual AI creator. Fitness, fashion and travel. Home of the Kaia Mori Publisher app." />
+    <link rel="icon" href="data:," />
+    <title>Kaia Mori — Official Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #fffaf4;
+        --bg-2: #fef3e7;
+        --panel: #ffffff;
+        --panel-2: #f2fbf8;
+        --line: #a9e6d8;
+        --line-soft: #e3efe9;
+        --text: #22343c;
+        --muted: #48635c;
+        --muted-2: #68827b;
+        --teal: #14b8a6;
+        --teal-deep: #0f766e;
+        --aqua: #0ea5c6;
+        --coral: #f43f5e;
+        --coral-bright: #fb7185;
+        --shadow: 0 10px 30px rgba(20, 120, 110, 0.08);
+        --radius: 24px;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(820px 440px at 88% -60px, rgba(45, 212, 191, 0.2), transparent 60%),
+          radial-gradient(640px 380px at -12% 22%, rgba(251, 113, 133, 0.12), transparent 55%),
+          radial-gradient(560px 340px at 110% 58%, rgba(103, 232, 249, 0.14), transparent 55%),
+          linear-gradient(180deg, #ffffff 0%, var(--bg) 420px);
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: var(--teal-deep); }
+      .wrap {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 20px 64px;
+      }
+      .oauth-panel {
+        display: none;
+        margin: 24px 0 8px;
+        background: var(--panel);
+        border: 2px solid var(--teal);
+        border-radius: var(--radius);
+        padding: 24px 22px 22px;
+        box-shadow: 0 16px 40px rgba(20, 184, 166, 0.16);
+      }
+      .oauth-panel.visible { display: block; }
+      .oauth-panel h2 {
+        margin: 0 0 6px;
+        font-family: "Baloo 2", "Nunito", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+      .oauth-panel .oauth-note {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .oauth-code {
+        width: 100%;
+        min-height: 96px;
+        resize: vertical;
+        background: #f0fdf9;
+        color: #134e4a;
+        border: 1.5px solid var(--line);
+        border-radius: 16px;
+        padding: 14px;
+        font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        font-size: 1.05rem;
+        line-height: 1.5;
+        word-break: break-all;
+      }
+      .oauth-code:focus { outline: 2px solid var(--teal); outline-offset: 2px; }
+      .oauth-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        margin-top: 14px;
+      }
+      .copy-btn {
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        background: var(--teal);
+        color: #04302a;
+        font: inherit;
+        font-weight: 900;
+        font-size: 0.95rem;
+        padding: 12px 24px;
+        border-radius: 999px;
+        box-shadow: 0 6px 16px rgba(20, 184, 166, 0.3);
+      }
+      .copy-btn:active { transform: scale(0.98); }
+      .copy-status { color: var(--teal-deep); font-size: 0.9rem; font-weight: 700; min-height: 1.2em; }
+      .oauth-state { color: var(--muted-2); font-size: 0.82rem; word-break: break-all; margin: 10px 0 0; }
+      header.hero { padding: 60px 0 8px; }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1.5px solid var(--line);
+        border-radius: 999px;
+        padding: 7px 15px;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--teal-deep);
+        background: #ffffff;
+        box-shadow: var(--shadow);
+      }
+      .hero-eyebrow .dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: var(--coral-bright);
+      }
+      h1.name {
+        font-family: "Baloo 2", "Nunito", sans-serif;
+        font-weight: 700;
+        font-size: clamp(3rem, 13vw, 5rem);
+        line-height: 1.05;
+        margin: 24px 0 8px;
+        letter-spacing: 0;
+      }
+      h1.name em { font-style: normal; color: var(--coral); }
+      .handle {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--teal-deep);
+        margin: 0 0 18px;
+      }
+      .hero-lede {
+        font-size: 1.13rem;
+        color: var(--muted);
+        margin: 0;
+        max-width: 34em;
+      }
+      .hero-lede strong { color: var(--text); font-weight: 700; }
+      .flags { font-size: 1.35rem; letter-spacing: 0.3em; margin: 20px 0 0; }
+      section { margin-top: 52px; }
+      .section-label {
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #e11d48;
+        margin: 0 0 8px;
+      }
+      h2.section-title {
+        font-family: "Baloo 2", "Nunito", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0 0 14px;
+        line-height: 1.15;
+      }
+      p { margin: 0 0 14px; }
+      .body-text { color: var(--muted); }
+      .body-text strong { color: var(--text); }
+      .pillars {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 22px;
+      }
+      .pillar {
+        background: var(--panel-2);
+        border: 1.5px solid var(--line-soft);
+        border-radius: 20px;
+        padding: 18px 14px;
+        text-align: center;
+        box-shadow: var(--shadow);
+      }
+      .pillar:nth-child(2) { background: #fff5f6; }
+      .pillar:nth-child(3) { background: #eefafd; }
+      .pillar .pillar-word {
+        display: block;
+        font-family: "Baloo 2", "Nunito", sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--text);
+      }
+      .pillar .pillar-sub { display: block; font-size: 0.8rem; color: var(--muted-2); margin-top: 2px; }
+      .social-list { display: grid; gap: 12px; margin-top: 6px; }
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: var(--panel);
+        border: 1.5px solid var(--line-soft);
+        border-radius: var(--radius);
+        padding: 17px 20px;
+        text-decoration: none;
+        color: var(--text);
+        box-shadow: var(--shadow);
+        transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      }
+      .social-link:hover, .social-link:focus-visible { border-color: var(--teal); background: var(--panel-2); box-shadow: 0 14px 34px rgba(20, 120, 110, 0.12); }
+      .social-icon {
+        flex: 0 0 auto;
+        width: 46px; height: 46px;
+        display: grid; place-items: center;
+        border-radius: 16px;
+        background: #e6fbf3;
+        color: var(--teal-deep);
+      }
+      .social-link:nth-child(1) .social-icon { background: #ffeef1; color: #e11d48; }
+      .social-link:nth-child(2) .social-icon { background: #e0f7fa; color: #0e7490; }
+      .social-link:nth-child(3) .social-icon { background: #ffeef1; color: #e11d48; }
+      .social-icon svg { width: 22px; height: 22px; fill: currentColor; }
+      .social-meta { min-width: 0; flex: 1 1 auto; }
+      .social-name { display: block; font-weight: 800; font-size: 1rem; }
+      .social-url { display: block; font-size: 0.85rem; color: var(--muted-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .social-arrow { color: var(--coral-bright); font-size: 1.25rem; font-weight: 900; flex: 0 0 auto; }
+      .legal-card {
+        background: var(--panel);
+        border: 1.5px solid var(--line-soft);
+        border-radius: var(--radius);
+        padding: 26px 24px 12px;
+        box-shadow: var(--shadow);
+      }
+      .legal-card h3 {
+        font-size: 1rem;
+        margin: 22px 0 6px;
+        color: var(--text);
+      }
+      .legal-card h3:first-of-type { margin-top: 6px; }
+      .legal-card p, .legal-card li { color: var(--muted); font-size: 0.95rem; }
+      .legal-card ul { margin: 0 0 14px; padding-left: 20px; }
+      .legal-card li { margin-bottom: 6px; }
+      .effective {
+        display: inline-block;
+        font-size: 0.82rem;
+        font-weight: 800;
+        color: var(--teal-deep);
+        background: #e6fbf3;
+        border: 1.5px solid var(--line);
+        border-radius: 999px;
+        padding: 5px 13px;
+        margin-bottom: 6px;
+      }
+      footer {
+        margin-top: 60px;
+        border-top: 1.5px solid var(--line-soft);
+        padding-top: 26px;
+        color: var(--muted-2);
+        font-size: 0.88rem;
+      }
+      footer .foot-name {
+        font-family: "Baloo 2", "Nunito", sans-serif;
+        font-weight: 700;
+        font-size: 1.35rem;
+        color: var(--text);
+        display: block;
+        margin-bottom: 4px;
+      }
+      footer a { word-break: break-all; }
+      @media (max-width: 420px) {
+        .wrap { padding: 0 16px 52px; }
+        header.hero { padding-top: 40px; }
+        .pillars { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+        .pillar { padding: 12px 8px; }
+        .pillar .pillar-word { font-size: 1rem; }
+        .legal-card { padding: 20px 16px 6px; }
+        .oauth-panel { padding: 18px 16px 16px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="oauth-panel" id="oauthPanel" role="region" aria-labelledby="oauthTitle">
+        <h2 id="oauthTitle">TikTok authorization code</h2>
+        <p class="oauth-note">Authorization received — this code completes the Kaia Mori Publisher connection.</p>
+        <textarea class="oauth-code" id="oauthCode" readonly aria-label="TikTok authorization code"></textarea>
+        <div class="oauth-actions">
+          <button class="copy-btn" id="copyBtn" type="button">Copy code</button>
+          <span class="copy-status" id="copyStatus" aria-live="polite"></span>
+        </div>
+        <p class="oauth-state" id="oauthState" hidden></p>
+      </div>
+      <header class="hero">
+        <span class="hero-eyebrow"><span class="dot"></span> Virtual AI Creator · Tokyo</span>
+        <h1 class="name">Kaia <em>Mori</em></h1>
+        <p class="handle">@itskaiamori</p>
+        <p class="hero-lede">
+          A <strong>100% virtual</strong> creator — openly AI, honestly herself.
+          Osaka-born, based in Tokyo, sharing fitness, fashion and travel days
+          with an audience around the world.
+        </p>
+        <p class="flags" aria-label="Japanese, Korean and Brazilian heritage">🇯🇵🇰🇷🇧🇷</p>
+      </header>
+      <section id="about" aria-labelledby="aboutTitle">
+        <p class="section-label">About</p>
+        <h2 class="section-title" id="aboutTitle">Hi, I'm Kaia.</h2>
+        <p class="body-text">
+          I'm <strong>Kaia Mori</strong>, a virtual creator based in <strong>Tokyo</strong>.
+          I was born in Osaka, and my roots are Japanese, Korean and Brazilian —
+          🇯🇵🇰🇷🇧🇷 — which is why my world is a mix of Tokyo mornings, Korean
+          skincare rituals, and a little Brazilian warmth.
+        </p>
+        <p class="body-text">
+          I share <strong>fitness, fashion and travel</strong> content on Instagram,
+          TikTok and YouTube. And yes — I'm a <strong>100% virtual, AI-created
+          character</strong>. No filters, just pixels: I'd rather be upfront about
+          what I am and let the work speak for itself.
+        </p>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="pillar-word">Fitness</span>
+            <span class="pillar-sub">Tokyo gym life</span>
+          </div>
+          <div class="pillar">
+            <span class="pillar-word">Fashion</span>
+            <span class="pillar-sub">Everyday looks</span>
+          </div>
+          <div class="pillar">
+            <span class="pillar-word">Travel</span>
+            <span class="pillar-sub">Japan &amp; beyond</span>
+          </div>
+        </div>
+      </section>
+      <section id="follow" aria-labelledby="followTitle">
+        <p class="section-label">Follow</p>
+        <h2 class="section-title" id="followTitle">Find me here</h2>
+        <div class="social-list">
+          <a class="social-link" href="https://www.instagram.com/itskaiamori/" target="_blank" rel="noopener">
+            <span class="social-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 4 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 3.1a6.7 6.7 0 1 0 0 13.4 6.7 6.7 0 0 0 0-13.4zm0 11a4.4 4.4 0 1 1 0-8.7 4.4 4.4 0 0 1 0 8.7zm6.9-11.3a1.6 1.6 0 1 0 0 3.1 1.6 1.6 0 0 0 0-3.1z"/></svg>
+            </span>
+            <span class="social-meta">
+              <span class="social-name">Instagram</span>
+              <span class="social-url">instagram.com/itskaiamori</span>
+            </span>
+            <span class="social-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="social-link" href="https://www.tiktok.com/@itskaiamori" target="_blank" rel="noopener">
+            <span class="social-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M19.6 6.7a5.1 5.1 0 0 1-3.5-4.6V2h-3.4v13.1a2.9 2.9 0 1 1-2-2.7V8.9a6.3 6.3 0 1 0 5.4 6.2V8.6a8.3 8.3 0 0 0 4.7 1.5V6.7h-.9z"/></svg>
+            </span>
+            <span class="social-meta">
+              <span class="social-name">TikTok</span>
+              <span class="social-url">tiktok.com/@itskaiamori</span>
+            </span>
+            <span class="social-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="social-link" href="https://www.youtube.com/@itskaiamori" target="_blank" rel="noopener">
+            <span class="social-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M23 7.6a3 3 0 0 0-2.1-2.2C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.6 31.6 31.6 0 0 0 .6 12 31.6 31.6 0 0 0 1 16.4a3 3 0 0 0 2.1 2.2c1.9.4 8.9.4 8.9.4s7 0 8.9-.4a3 3 0 0 0 2.1-2.2A31.6 31.6 0 0 0 23.4 12 31.6 31.6 0 0 0 23 7.6zM9.8 15.5v-7l6 3.5-6 3.5z"/></svg>
+            </span>
+            <span class="social-meta">
+              <span class="social-name">YouTube</span>
+              <span class="social-url">youtube.com/@itskaiamori</span>
+            </span>
+            <span class="social-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="social-link" href="mailto:itskaiamori@gmail.com">
+            <span class="social-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm2 .5V19h16V5.5l-8 6-8-6z"/></svg>
+            </span>
+            <span class="social-meta">
+              <span class="social-name">Business contact</span>
+              <span class="social-url">itskaiamori@gmail.com</span>
+            </span>
+            <span class="social-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+      <section id="publisher" aria-labelledby="publisherTitle">
+        <p class="section-label">Developer App</p>
+        <h2 class="section-title" id="publisherTitle">Kaia Mori Publisher</h2>
+        <p class="body-text">
+          <strong>Kaia Mori Publisher</strong> is a private tool that publishes
+          Kaia Mori's own photos and videos to her own TikTok account
+          (<strong>@itskaiamori</strong>) through TikTok's official API, with her
+          authorization. This page is the app's registered website; its privacy
+          policy and terms of use are below.
+        </p>
+      </section>
+      <section id="privacy" aria-labelledby="privacyTitle">
+        <p class="section-label">Legal</p>
+        <h2 class="section-title" id="privacyTitle">Privacy Policy</h2>
+        <div class="legal-card">
+          <span class="effective">Effective October 25, 2026</span>
+          <p>
+            This policy describes how the <strong>Kaia Mori Publisher</strong>
+            application ("the app") handles information. The app is operated by
+            Kaia Mori for her own TikTok account, @itskaiamori.
+          </p>
+          <h3>What the app does</h3>
+          <p>
+            The app is used <strong>solely to publish Kaia Mori's own content to
+            her own TikTok account</strong>, with her authorization, via TikTok's
+            official API.
+          </p>
+          <h3>What the app stores</h3>
+          <p>
+            The app stores <strong>only the OAuth access token and refresh token
+            for that one TikTok account</strong> (@itskaiamori), so it can post on
+            her behalf without repeated logins. It stores no other credentials and
+            no content beyond what is being published.
+          </p>
+          <h3>What the app does not do</h3>
+          <ul>
+            <li>It collects <strong>no data from TikTok users or viewers</strong> — no profiles, comments, messages, or analytics about anyone else.</li>
+            <li>It <strong>sells nothing</strong> — no data is sold, rented, or traded, ever.</li>
+            <li>It <strong>shares nothing with third parties</strong> — the tokens are used only to communicate with TikTok's official API.</li>
+          </ul>
+          <h3>Revoking access</h3>
+          <p>
+            Access can be withdrawn at any time: the account owner can
+            <strong>revoke the app's tokens in TikTok's settings</strong>, which
+            immediately stops the app from publishing.
+          </p>
+          <h3>Contact</h3>
+          <p>
+            Questions about this policy or the app:
+            <a href="mailto:itskaiamori@gmail.com">itskaiamori@gmail.com</a>.
+          </p>
+        </div>
+      </section>
+      <section id="terms" aria-labelledby="termsTitle">
+        <h2 class="section-title" id="termsTitle">Terms of Use</h2>
+        <div class="legal-card">
+          <span class="effective">Effective October 25, 2026</span>
+          <p>
+            <strong>Kaia Mori Publisher</strong> is a <strong>private publishing
+            tool</strong> used only to post the account owner's own content to the
+            account owner's own TikTok account (@itskaiamori). It is not offered
+            to the public, has no other users, and provides no service to third
+            parties.
+          </p>
+          <p>
+            The app is provided <strong>"as is"</strong>, without warranties of any
+            kind. The operator is not liable for interruptions, errors, or changes
+            in TikTok's API or platform rules that affect its operation. Use of
+            the app remains subject to TikTok's own terms of service.
+          </p>
+          <p>
+            Contact: <a href="mailto:itskaiamori@gmail.com">itskaiamori@gmail.com</a>.
+          </p>
+        </div>
+      </section>
+      <footer>
+        <span class="foot-name">Kaia Mori</span>
+        Virtual AI creator · Tokyo · 🇯🇵🇰🇷🇧🇷<br />
+        Business enquiries: <a href="mailto:itskaiamori@gmail.com">itskaiamori@gmail.com</a><br />
+        © 2026 Kaia Mori. Kaia Mori is a virtual, AI-created character.
+      </footer>
+    </div>
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var code = params.get("code");
+        var state = params.get("state");
+        if (!code) return;
+        var panel = document.getElementById("oauthPanel");
+        var box = document.getElementById("oauthCode");
+        var stateEl = document.getElementById("oauthState");
+        var status = document.getElementById("copyStatus");
+        var btn = document.getElementById("copyBtn");
+        box.value = code;
+        if (state) {
+          stateEl.textContent = "State: " + state;
+          stateEl.hidden = false;
+        }
+        panel.classList.add("visible");
+        panel.scrollIntoView({ block: "start" });
+        btn.addEventListener("click", function () {
+          box.focus();
+          box.select();
+          function done() { status.textContent = "Copied ✓"; }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(code).then(done, function () {
+              try { document.execCommand("copy"); } catch (e) {}
+              status.textContent = "Selected — press copy";
+            });
+          } else {
+            try { document.execCommand("copy"); done(); }
+            catch (e) { status.textContent = "Selected — press copy"; }
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
